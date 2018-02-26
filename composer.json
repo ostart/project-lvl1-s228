@@ -1,0 +1,15 @@
+{
+    "name": "ostart/brain-games-ostart-php",
+    "description": "First PHP Hexlet Project Brain Games",
+    "type": "library",
+	"authors": [
+	  {
+	    "name": "Artem Osta",
+	    "email": "artem.osta@gmail.com"
+	  }
+	],
+	"version": "0.0.1",
+	"bin": ["bin/brain-games"],
+    "license": "MIT",
+    "require": {}
+}
