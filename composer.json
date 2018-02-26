@@ -2,19 +2,19 @@
     "name": "ostart/brain-games-ostart-php",
     "description": "First PHP Hexlet Project Brain Games",
     "type": "library",
-	"authors": [
-	  {
-	    "name": "Artem Osta",
-	    "email": "artem.osta@gmail.com"
-	  }
-	],
-	"version": "0.0.3",
-	"bin": ["bin/brain-games"],
+    "authors": [
+      {
+      	"name": "Artem Osta",
+      	"email": "artem.osta@gmail.com"
+      }
+    ],
+    "version": "0.0.4",
+    "bin": ["bin/brain-games"],
     "license": "MIT",
     "require": {
-		"wp-cli/php-cli-tools": "*"
-	},
-	"autoload": {
+    	"wp-cli/php-cli-tools": "*"
+    },
+    "autoload": {
     	"files": ["src/Cli.php"]
     }
 }
