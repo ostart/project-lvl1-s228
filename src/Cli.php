@@ -10,7 +10,7 @@ const SUCCESSTRY = 3;
 function run()
 {
     line('Welcome to the Brain Game!');
-    $name = prompt('May I have your name?');
+    $name = prompt('May I have your name?', false, ' ');
     line("Hello, %s!", $name);
 }
 
@@ -22,7 +22,7 @@ function iter($counter, $successTry, $getQuestion, $calcResult)
 
     $quest = $getQuestion();
     line("Question: %s", $quest);
-    $answer = prompt('Your answer: ');
+    $answer = prompt('Your answer: ', false, '');
     $result = $calcResult($quest);
 
     if ($answer === $result) {
@@ -40,7 +40,7 @@ function playGame($disclaimer, $getQuestion, $calcResult)
     line($disclaimer);
     line();
 
-    $name = prompt('May I have your name?');
+    $name = prompt('May I have your name?', false, ' ');
     line("Hello, %s!", $name);
 
     $isCorrect = iter(COUNTER, SUCCESSTRY, $getQuestion, $calcResult);
