@@ -8,13 +8,14 @@
       	"email": "artem.osta@gmail.com"
       }
     ],
-    "version": "0.0.9",
+    "version": "0.0.10",
     "bin": [
       "bin/brain-games",
       "bin/brain-even",
       "bin/brain-calc",
       "bin/brain-gcd",
-      "bin/brain-balance"
+      "bin/brain-balance",
+      "bin/brain-progression"
     ],
     "license": "MIT",
     "require": {
@@ -26,7 +27,8 @@
         "src/games/Even.php",
         "src/games/Calc.php",
         "src/games/Gcd.php",
-        "src/games/Balance.php"
+        "src/games/Balance.php",
+        "src/games/Progression.php"
       ]
     },
     "require-dev": {
