@@ -14,16 +14,22 @@ function gcd($a, $b)
 
 function run()
 {
+    $number1 = 0;
+    $number2 = 0;
     $disclaimer = 'Find the greatest common divisor of given numbers.';
-    $question = function () {
+
+    $getQuestion = function () {
+        global $number1, $number2;
         $number1 = rand(1, 100);
         $number2 = rand(1, 100);
         return "{$number1} {$number2}";
     };
-    $result = function ($quest) {
-        list($number1, $number2) = explode(' ', $quest);
+
+    $getEtalonAnswer = function () {
+        global $number1, $number2;
         $gcdResult = ($number1 < $number2) ? gcd($number1, $number2) : gcd($number2, $number1);
         return "{$gcdResult}";
     };
-    playGame($disclaimer, $question, $result);
+    
+    playGame($disclaimer, $getQuestion, $getEtalonAnswer);
 }

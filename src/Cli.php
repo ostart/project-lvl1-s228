@@ -14,27 +14,27 @@ function run()
     line("Hello, %s!", $name);
 }
 
-function iter($counter, $successTry, $getQuestion, $calcResult)
+function iter($counter, $successTry, $getQuestion, $getEtalonAnswer)
 {
     if ($counter === $successTry) {
         return true;
     }
 
-    $quest = $getQuestion();
-    line("Question: %s", $quest);
-    $answer = prompt('Your answer: ', false, '');
-    $result = $calcResult($quest);
+    $question = $getQuestion();
+    line("Question: %s", $question);
+    $userAnswer = prompt('Your answer: ', false, '');
+    $etalonAnswer = $getEtalonAnswer();
 
-    if ($answer === $result) {
+    if ($userAnswer === $etalonAnswer) {
         line('Correct!');
-        return iter($counter + 1, $successTry, $getQuestion, $calcResult);
+        return iter($counter + 1, $successTry, $getQuestion, $getEtalonAnswer);
     }
 
-    line("%s is wrong answer ;(. Correct answer was %s.", $answer, $result);
+    line("%s is wrong answer ;(. Correct answer was %s.", $userAnswer, $etalonAnswer);
     return false;
 }
 
-function playGame($disclaimer, $getQuestion, $calcResult)
+function playGame($disclaimer, $getQuestion, $getEtalonAnswer)
 {
     line('Welcome to the Brain Game!');
     line($disclaimer);
@@ -43,7 +43,7 @@ function playGame($disclaimer, $getQuestion, $calcResult)
     $name = prompt('May I have your name?', false, ' ');
     line("Hello, %s!", $name);
 
-    $isCorrect = iter(COUNTER, SUCCESSTRY, $getQuestion, $calcResult);
+    $isCorrect = iter(COUNTER, SUCCESSTRY, $getQuestion, $getEtalonAnswer);
 
     if ($isCorrect) {
         line("Congratulations, %s!", $name);

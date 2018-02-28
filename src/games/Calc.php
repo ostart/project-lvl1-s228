@@ -4,24 +4,26 @@ namespace BrainGames\Calc;
 
 use function BrainGames\Cli\playGame;
 
-const ARR = ["+", "-", "*"];
-
-class Pointer
-{
-    public static $pointer = 0;
-}
+const ARR = ['+', '-', '*'];
 
 function run()
 {
+    $number1 = 0;
+    $number2 = 0;
+    $sign = ARR[0];
     $disclaimer = 'What is the result of the expression?';
-    $question = function () {
+
+    $getQuestion = function () {
+        global $number1, $number2, $sign;
         $number1 = rand(1, 100);
         $number2 = rand(1, 100);
-        $sign = ARR[Pointer::$pointer++];
+        static $pointer = 0;
+        $sign = ARR[$pointer++];
         return "{$number1} {$sign} {$number2}";
     };
-    $result = function ($quest) {
-        list($number1, $sign, $number2) = explode(' ', $quest);
+
+    $getEtalonAnswer = function () {
+        global $number1, $number2, $sign;
         switch ($sign) {
             case '+':
                 $sum = $number1 + $number2;
@@ -37,5 +39,6 @@ function run()
                 break;
         }
     };
-    playGame($disclaimer, $question, $result);
+
+    playGame($disclaimer, $getQuestion, $getEtalonAnswer);
 }
