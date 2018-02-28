@@ -4,6 +4,8 @@ namespace BrainGames\Progression;
 
 use function BrainGames\Cli\playGame;
 
+const LENGTH = 10;
+
 function generateProgression($init, $length, $step)
 {
     $arr = [];
@@ -21,11 +23,10 @@ function run()
 
     $getQuestion = function () {
         global $number;
-        $length = 10;
         $init = rand(0, 100);
         $step = rand(1, 10);
-        $progression = generateProgression($init, $length, $step);
-        $position = rand(0, $length - 1);
+        $progression = generateProgression($init, LENGTH, $step);
+        $position = rand(0, LENGTH - 1);
         $number = $progression[$position];
         $progression[$position] = '..';
         return implode(' ', $progression);

@@ -25,7 +25,7 @@ function run()
     $getQuestion = function () {
         global $number;
         $number = rand(100, 9999);
-        return "{$number}";
+        return $number;
     };
 
     $getEtalonAnswer = function () {
