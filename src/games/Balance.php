@@ -19,19 +19,13 @@ function balance($a)
 
 function run()
 {
-    $number = 0;
     $disclaimer = 'Balance the given number.';
 
-    $getQuestion = function () {
-        global $number;
+    $getData = function () {
         $number = rand(100, 9999);
-        return $number;
+        $answer = balance("{$number}");
+        return [$number, $answer];
     };
 
-    $getEtalonAnswer = function () {
-        global $number;
-        return balance("{$number}");
-    };
-    
-    playGame($disclaimer, $getQuestion, $getEtalonAnswer);
+    playGame($disclaimer, $getData);
 }

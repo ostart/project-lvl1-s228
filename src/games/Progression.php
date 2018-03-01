@@ -18,24 +18,18 @@ function generateProgression($init, $length, $step)
 
 function run()
 {
-    $number = 0;
     $disclaimer = 'What number is missing in this progression?';
 
-    $getQuestion = function () {
-        global $number;
+    $getData = function () {
         $init = rand(0, 100);
         $step = rand(1, 10);
         $progression = generateProgression($init, LENGTH, $step);
         $position = rand(0, LENGTH - 1);
         $number = $progression[$position];
         $progression[$position] = '..';
-        return implode(' ', $progression);
-    };
-
-    $getEtalonAnswer = function () {
-        global $number;
-        return "{$number}";
+        $question = implode(' ', $progression);
+        return [$question, "{$number}"];
     };
     
-    playGame($disclaimer, $getQuestion, $getEtalonAnswer);
+    playGame($disclaimer, $getData);
 }

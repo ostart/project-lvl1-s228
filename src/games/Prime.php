@@ -21,19 +21,13 @@ function isPrime($a)
 
 function run()
 {
-    $number = 0;
     $disclaimer = 'Is this number prime?';
 
-    $getQuestion = function () {
-        global $number;
+    $getData = function () {
         $number = rand(1, 100);
-        return $number;
-    };
-
-    $getEtalonAnswer = function () {
-        global $number;
-        return (isPrime($number)) ? 'yes' : 'no';
+        $answer = (isPrime($number)) ? 'yes' : 'no';
+        return [$number, $answer];
     };
     
-    playGame($disclaimer, $getQuestion, $getEtalonAnswer);
+    playGame($disclaimer, $getData);
 }
