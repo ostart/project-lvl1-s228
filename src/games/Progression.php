@@ -6,14 +6,24 @@ use function BrainGames\Cli\playGame;
 
 const LENGTH = 10;
 
-function generateProgression($init, $length, $step)
+function generateProgression($number)
 {
-    $arr = [];
-    for ($i = 0; $i < $length; $i += 1) {
-        $newElem = $init + ($i * $step);
-        array_push($arr, $newElem);
-    }
-    return $arr;
+    $position = rand(0, LENGTH - 1);
+    $step = rand(1, 10);
+    $first = $number - $step * $position;
+
+    $iter = function ($init, $step, $i, $array) use (&$iter, $number) {
+        if ($i >= LENGTH) {
+            return $array;
+        }
+        $current = $init + ($i * $step);
+        $current = ($current === $number) ? '..' : $current;
+        array_push($array, $current);
+        return $iter($init, $step, $i + 1, $array);
+    };
+
+    $progression = $iter($first, $step, 0, []);
+    return implode(' ', $progression);
 }
 
 function run()
@@ -21,14 +31,9 @@ function run()
     $disclaimer = 'What number is missing in this progression?';
 
     $getData = function () {
-        $init = rand(0, 100);
-        $step = rand(1, 10);
-        $progression = generateProgression($init, LENGTH, $step);
-        $position = rand(0, LENGTH - 1);
-        $number = $progression[$position];
-        $progression[$position] = '..';
-        $question = implode(' ', $progression);
-        return [$question, "{$number}"];
+        $number = rand(10, 100);
+        $progression = generateProgression($number);
+        return [$progression, "{$number}"];
     };
     
     playGame($disclaimer, $getData);
